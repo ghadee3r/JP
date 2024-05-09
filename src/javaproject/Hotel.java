@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package JavaProject;
 
+package JavaProject;
+import javax.swing.JOptionPane;
+import java.io.*;
 /**
  *
  * @author ghade
@@ -178,6 +176,24 @@ public class Hotel {
    
       return false;
    }
+   
+   public void save (String fileName){
+       try{
+           File out = new File(fileName);
+           FileOutputStream fos = new FileOutputStream(out);
+           ObjectOutputStream file = new ObjectOutputStream(fos);
+           
+           file.writeInt(numOR);
+           file.writeObject(name);
+           
+           for (int i=0; i< numOR; i++)
+               file.writeObject(roomList[i]);
+           
+           file.close();
+       }catch(IOException ex){
+           JoptionPane.showMwssageDialog(null,"error"+ ex.toString()); }
+       }
+
 
 
 }
