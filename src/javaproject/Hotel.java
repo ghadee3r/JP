@@ -195,5 +195,32 @@ public class Hotel {
        }
 
 
+ public void load (String fileName){
+       try{
+File f= new File (fileName);
+FileInputStream fi = new FileInputStream(f);
+ObjectInputStream in=new ObjectInputStream(fi);
+
+int size= in.readInt();
+String Name =(String) in.readObject();
+
+name=Name;
+
+for (int i=0; i<size; i++){
+    Room obj= (Room) in.readObject();
+    this.addRoom(obj);
+            }
+in.close();
+   }
+   catch(ClassNotFoundException ex) { 
+                  JoptionPane.showMwssageDialog(null,"error") ;}
+
+   
+   catch(IOException ex){
+          JoptionPane.showMwssageDialog(null,"error"+ ex.toString()) ;
+   }       
+   
+
+}
 
 }
