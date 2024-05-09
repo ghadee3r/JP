@@ -30,7 +30,7 @@ public class Suite extends Room {
       if ( balcony)    
          str=str+"with balcony.";
       else
-         str=str+"with out balcony.";
+         str=str+"with out47893039 balcony.";
       return str;
    }
 }
