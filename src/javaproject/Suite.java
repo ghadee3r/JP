@@ -27,7 +27,7 @@ public class Suite extends Room {
 
    public String toString(){
       String str = super.toString()+"\nBalcony prefrance: ";
-      if ( balcony)
+      if ( balcony)    
          str=str+"with balcony.";
       else
          str=str+"with out balcony.";
