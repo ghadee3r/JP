@@ -1,6 +1,7 @@
 
 package JavaProject;
 
+import java.io.*;
 import javax.swing.JOptionPane;
 
 
@@ -28,6 +29,7 @@ public class frame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -37,7 +39,7 @@ public class frame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Welcome to our project!");
 
-        jButton1.setText("add new school");
+        jButton1.setText("add new hotel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -60,7 +62,7 @@ public class frame extends javax.swing.JFrame {
 
         jLabel3.setText("hotel name");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("load"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("load , save"));
 
         jButton2.setText("load hotel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -76,15 +78,24 @@ public class frame extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("save");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -94,7 +105,9 @@ public class frame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         jButton3.setText("add new room");
@@ -222,23 +235,67 @@ public class frame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Load Hotel
         if(ObjHotel != null){
-            ObjHotel.save(ObjHotel.getName()+".ser");
-
+           int num = JOptionPane.showConfirmDialog(null, "there is a hotel open already, do you want to continue? ", "alert", JOptionPane.YES_NO_OPTION);
+                   if(num==JOptionPane.NO_OPTION)
+                       return;
         }
-        String Name= jTextField3.getText();
-        ObjHotel = new Hotel (Name , 50);
-        if(ObjHotel.load(Name+".ser")==false){
-        ObjHotel=null;
-        JOptionPane.showMessageDialog(this, "this file does not exist, create a new hotel");
-        return;
-        }
-    jTextField3.setText("");
-    JOptionPane.showMessageDialog(this, "load hotel is done");
+       String fileName= jTextField3.getText() +".ser";
+       try{
+      File f= new File(fileName);
+      if(! f.exists()) {
+      JOptionPane.showMessageDialog(this, "file does not exist");
+      return;
+      }     
+        FileInputStream fi= new  FileInputStream(f); 
+        ObjectInputStream in= new ObjectInputStream(fi);
+        
+        ObjHotel= (Hotel)in.readObject();
+        JOptionPane.showMessageDialog(this, "loading the Hotel is done");
+        in.close();
+        
+          }catch(ClassNotFoundException ex){
+           JOptionPane.showMessageDialog(null, "error while reading object");
+          } catch(IOException ex){
+           JOptionPane.showMessageDialog(null, "error while loading file"+ ex.toString());
+          }
+       jTextField3.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // save Hotel
+        if(ObjHotel==null){
+        JOptionPane.showMessageDialog(this, "no school found");
+        return;
+        }
+        
+        try{
+        String fileName = ObjHotel.getName()+".ser";
+        File out= new File(fileName);
+        
+        if(out.exists() ){
+        int num = JOptionPane.showConfirmDialog(null, "this file already exists, do you want to continue?", "alert", JOptionPane.YES_NO_OPTION);
+        if(num==JOptionPane.NO_OPTION)
+            return;
+        
+        }
+        
+        FileOutputStream fos= new FileOutputStream(out);
+        ObjectOutputStream file= new ObjectOutputStream(fos);
+        
+        file.writeObject(ObjHotel);
+        
+        file.close();
+        JOptionPane.showMessageDialog(null, "save all information is done in "+fileName);
+        
+        }catch(IOException ex){
+        JOptionPane.showMessageDialog(null, "Error! in my project "+ ex.toString());
+        
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,6 +337,7 @@ public class frame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -6,7 +6,7 @@ import java.io.*;
  *
  * @author ghade
  */
-public class Hotel {
+public class Hotel implements Serializable{
     
      private String name;
    private int numOR;
@@ -181,7 +181,7 @@ public class Hotel {
       return false;
    }
    
-   public void save (String fileName){
+ /*  public void save (String fileName){
        try{
            File out = new File(fileName);
            FileOutputStream fos = new FileOutputStream(out);
@@ -197,9 +197,9 @@ public class Hotel {
        }catch(IOException ex){
            JOptionPane.showMessageDialog(null,"error"+ ex.toString()); }
        }
+*/
 
-
- public boolean load (String fileName){
+ /*public boolean load (String fileName){
        try{
 File f= new File (fileName);
 if(! f.exists() ){
@@ -229,6 +229,6 @@ in.close();
    
        return true;
 
-}
+}*/
 
 }
