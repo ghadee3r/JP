@@ -234,10 +234,46 @@ jTextField4.setText("");       }
         else
                     balcony = false;
         
-        double price =Double.parseDouble(priceText);
-        int roomNo = Integer.parseInt(roomNoText);
-       
-        int noNights = Integer.parseInt(NoNightsText);
+        
+        
+        
+        double price; int roomNo; int noNights;
+        
+       try{
+         price =Double.parseDouble(priceText);
+         if (price <450)
+             throw new InvalidPriceException();
+
+        } catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "invalid price value, try again");
+            return;
+        }
+       catch (InvalidPriceException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            return;
+       }
+        
+     try{
+         if (roomNoText.length()> frame.ObjHotel.roomList.length)
+             throw new InvalidRoomNumberException();
+         
+         roomNo = Integer.parseInt(roomNoText);
+     }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "invalid RoomNumber value, try again");
+            return;
+        }
+     catch(InvalidRoomNumberException ext){
+         JOptionPane.showMessageDialog(this,ext.getMessage());
+         return;
+     }
+        
+     
+     try{
+         noNights = Integer.parseInt(NoNightsText);
+     }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "invalid Number of Night value, try again");
+            return;
+        }
         
         Room room1= null;
         if (jRadioButton1.isSelected()==true)
@@ -249,7 +285,16 @@ jTextField4.setText("");       }
         
         
                           
-                    frame.ObjHotel.addRoom(room1)
+                if ( frame.ObjHotel.addRoom(room1))
+                    JOptionPane.showMessageDialog(this, "Adding new Room is done");
+                else
+                     JOptionPane.showMessageDialog(this, "Can not add new room");
+                    
+                 jTextField1.setText("");   
+                  jTextField2.setText("");   
+                   jTextField3.setText("");   
+                    jTextField4.setText("");   
+                    jRadioButton3.setEnabled(false);
                     
         
         
