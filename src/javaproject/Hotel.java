@@ -7,11 +7,11 @@ import java.io.*;
  * @author ghade
  */
 public class Hotel {
+    
      private String name;
-
    private int numOR;
    Room [] roomList;
-
+   
    public Hotel ( String name, int size ) {
       this.name=name;
       numOR=0;
@@ -36,7 +36,11 @@ public class Hotel {
    
    }
 
-
+    public String getName(){
+    
+        return name;
+    
+    }
 
    public boolean isAvailable(int roomNum) {
    
@@ -191,13 +195,16 @@ public class Hotel {
            
            file.close();
        }catch(IOException ex){
-           JoptionPane.showMwssageDialog(null,"error"+ ex.toString()); }
+           JOptionPane.showMessageDialog(null,"error"+ ex.toString()); }
        }
 
 
- public void load (String fileName){
+ public boolean load (String fileName){
        try{
 File f= new File (fileName);
+if(! f.exists() ){
+return false;
+}
 FileInputStream fi = new FileInputStream(f);
 ObjectInputStream in=new ObjectInputStream(fi);
 
@@ -213,13 +220,14 @@ for (int i=0; i<size; i++){
 in.close();
    }
    catch(ClassNotFoundException ex) { 
-                  JoptionPane.showMwssageDialog(null,"error") ;}
+                  JOptionPane.showMessageDialog(null,"error") ;}
 
    
    catch(IOException ex){
-          JoptionPane.showMwssageDialog(null,"error"+ ex.toString()) ;
+          JOptionPane.showMessageDialog(null,"error"+ ex.toString()) ;
    }       
    
+       return true;
 
 }
 

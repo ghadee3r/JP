@@ -4,19 +4,16 @@
  */
 package JavaProject;
 
-/**
- *
- * @author ghade
- */
+
 import java.util.Scanner;
 public class Test {
 
-    /**
-     * @param args the command line arguments
-     */
+ 
     public static void main(String[] args) {
-        // TODO code application logic here
-        Scanner scanner = new Scanner(System.in);
+       Scanner scanner = new Scanner(System.in);
+       
+        frame mainframe= new frame();
+        mainframe.setVisible(true);
    
       Hotel hotel=new Hotel("Sofitel",100);
       Room room1=new StandardRoom(1,500,"Single");
