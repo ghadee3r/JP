@@ -198,6 +198,16 @@ public class Hotel {
            JOptionPane.showMessageDialog(null,"error"+ ex.toString()); }
        }
 
+    private static class JoptionPane {
+
+        private static void showMwssageDialog(Object object, String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public JoptionPane() {
+        }
+    }
+
 
  public boolean load (String fileName){
        try{
