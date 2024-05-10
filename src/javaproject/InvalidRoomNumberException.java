@@ -11,7 +11,7 @@ package JavaProject;
 public class InvalidRoomNumberException extends Exception {
    
     public InvalidRoomNumberException (){
-        super("Ivalid Room number exception , try agin");
+        super("Invalid Room number  , try agin");
     }
     public InvalidRoomNumberException (String str){
         super(str);

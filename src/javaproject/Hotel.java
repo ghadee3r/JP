@@ -26,6 +26,9 @@ public class Hotel {
          return true;
    
    }
+   public int getSize(){
+       return roomList.length;
+   }
 
    public Room searchRoom ( int roomNum ){
       for ( int i=0; i< numOR; i++)
@@ -240,5 +243,6 @@ in.close();
        return true;
 
 }
+ 
 
 }

@@ -119,10 +119,11 @@ public class frame3 extends javax.swing.JFrame {
         String IDtext= jTextField1.getText();
         int id;
 try{
-    if (IDtext.length()>frame.ObjHotel.roomList.length)
+    id =(IntegerParseInt(IDtext));
+    if (id>frame.ObjHotel.getSize())
         throw new InvalidRoomNumberException();
     
-         id =(IntegerParseInt(IDtext));
+         
         }catch(NumberFormatException ex){
         JOptionPane.showMessageDialog(this, "invalid room number, try again");
            return;
