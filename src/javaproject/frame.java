@@ -204,7 +204,7 @@ public class frame extends javax.swing.JFrame {
        
         ObjHotel= new Hotel(Name, size); 
      
-        
+         
         
         
     }//GEN-LAST:event_jButton1ActionPerformed

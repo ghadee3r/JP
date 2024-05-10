@@ -26,6 +26,9 @@ public class Hotel implements Serializable{
          return true;
    
    }
+   public int getSize(){
+       return roomList.length;
+   }
 
    public Room searchRoom ( int roomNum ){
       for ( int i=0; i< numOR; i++)
@@ -181,25 +184,13 @@ public class Hotel implements Serializable{
       return false;
    }
    
- /*  public void save (String fileName){
-       try{
-           File out = new File(fileName);
-           FileOutputStream fos = new FileOutputStream(out);
-           ObjectOutputStream file = new ObjectOutputStream(fos);
-           
-           file.writeInt(numOR);
-           file.writeObject(name);
-           
-           for (int i=0; i< numOR; i++)
-               file.writeObject(roomList[i]);
-           
-           file.close();
-       }catch(IOException ex){
-           JOptionPane.showMessageDialog(null,"error"+ ex.toString()); }
-       }
-*/
+ 
 
- /*public boolean load (String fileName){
+
+/*
+
+ public boolean load (String fileName){
+
        try{
 File f= new File (fileName);
 if(! f.exists() ){
@@ -229,6 +220,11 @@ in.close();
    
        return true;
 
+
 }*/
 
 }
+ 
+
+
+
