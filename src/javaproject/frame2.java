@@ -241,8 +241,9 @@ jTextField4.setText("");       }
         
        try{
          price =Double.parseDouble(priceText);
-         if (price <450)
+         if (price <450) 
              throw new InvalidPriceException();
+            
 
         } catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "invalid price value, try again");
