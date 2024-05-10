@@ -109,18 +109,21 @@ public class frame3 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //View all available rooms
         String stri= frame.ObjHotel.availableRooms();
-                jTextArea1.setText(stri);
+        if (stri.equals("all rooms are reserved. ") )
+            stri = "Did not add any rooms yet.";
+              
+        jTextArea1.setText(stri);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Search room
         jTextArea1.setText("");
-        String IDtext= jTextField1.getText();
-        int id;
+        String RoomNumtext= jTextField1.getText();
+        int roomNo;
 try{
-    id =(IntegerParseInt(IDtext));
-    if (id>frame.ObjHotel.getSize())
+    roomNo =(IntegerParseInt(RoomNumtext));
+    if (roomNo>frame.ObjHotel.getSize())
         throw new InvalidRoomNumberException();
     
          
@@ -133,7 +136,7 @@ catch(InvalidRoomNumberException ext){
             return;
     
 }
-        Room room = frame.ObjHotel.searchRoom(id);
+        Room room = frame.ObjHotel.searchRoom(roomNo);
         if (room== null){
         JOptionPane.showMessageDialog(this, "Room Not Found");
         return;
