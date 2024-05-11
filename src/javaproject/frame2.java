@@ -41,6 +41,8 @@ public class frame2 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +101,15 @@ public class frame2 extends javax.swing.JFrame {
             }
         });
 
+        jTextField3.setText("Enter room number");
+
+        jButton2.setText("Delete Room");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,6 +153,12 @@ public class frame2 extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                             .addComponent(jTextField2))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116)
+                .addComponent(jButton2)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +186,11 @@ public class frame2 extends javax.swing.JFrame {
                         .addComponent(jLabel5)))
                 .addGap(58, 58, 58)
                 .addComponent(jButton1)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -290,6 +311,33 @@ jTextField4.setText("");       }
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String roomNum;
+roomNum=jTextField3.getText();
+int  roomNo=0;
+
+try {
+ roomNo= Integer.parseInt(roomNum);
+ if (roomNo> frame.ObjHotel.getSize()) 
+             throw new InvalidRoomNumberException();
+}   catch(NumberFormatException exp){
+            JOptionPane.showMessageDialog(this, "invalid RoomNumber value, try again");
+            return;
+        }
+     catch(InvalidRoomNumberException ext){
+         JOptionPane.showMessageDialog(this,ext.getMessage());
+         return;
+     }
+ //comment 
+boolean delete= frame.ObjHotel.deleteRoom(roomNo);
+
+if (delete)
+         JOptionPane.showMessageDialog(this, "room is deleted");
+else 
+             JOptionPane.showMessageDialog(this, "room does not exist");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -328,6 +376,7 @@ jTextField4.setText("");       }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -338,6 +387,7 @@ jTextField4.setText("");       }
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

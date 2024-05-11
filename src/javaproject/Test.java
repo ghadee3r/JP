@@ -87,7 +87,7 @@ public class Test {
                System.out.println("Invalid choice. Please enter a number between 1 and 4.");
                break;
          }
-      } while (choice != 4);
-    }
+      } while (choice != 4); 
+    } 
     
 }
