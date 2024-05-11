@@ -162,13 +162,27 @@ public class FrameRes extends javax.swing.JFrame {
         int pNum=0;
         int iD=0;
         try{
+            if (id.length() !=10)
+                throw new InvalidMaxNumException();
+                
+            
          iD = Integer.parseInt(id);
         }catch(NumberFormatException ex){
         JOptionPane.showMessageDialog(this, "invalid ID");
         jTextField1.setText("0");
         return;
+        
+        } catch ( InvalidMaxNumException ext){
+ 
+            JOptionPane.showMessageDialog(this, ext.getMessage());
+            return;
         }
+        
+        
         try{
+     if (phoneNum.length() !=10)
+                throw new InvalidMaxNumException();
+
          pNum = Integer.parseInt(phoneNum);
         }catch(NumberFormatException ex){
         JOptionPane.showMessageDialog(this, "invalid phone number");
@@ -176,6 +190,12 @@ public class FrameRes extends javax.swing.JFrame {
         return;
         }
        
+              catch ( InvalidMaxNumException ext){
+ 
+            JOptionPane.showMessageDialog(this, ext.getMessage());
+            return;
+}
+        
         Customer objCus= new Customer(name, pNum,id); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
