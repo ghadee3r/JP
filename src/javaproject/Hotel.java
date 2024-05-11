@@ -121,7 +121,7 @@ public class Hotel implements Serializable{
 
 
 
-   public void deleteReservation(int roomNum) {
+   public boolean deleteReservation(int roomNum) {
     // Check if the room exists and is not available
       if (searchRoom(roomNum)!=null && !isAvailable(roomNum)) {
          for (int i = 0; i < numOR; i++) {
@@ -130,14 +130,11 @@ public class Hotel implements Serializable{
                roomList[i].setCustomer(null);
                roomList[i].setNoNights(0);   
                roomList[i].setReserved(false);
-               System.out.println("Reservation for room " + roomNum + " has been deleted.");
-               return; // Exit the method once the reservation is deleted
+              
+               return true; // Exit the method once the reservation is deleted
             }
          }
-      } else {
-        // If the room doesn't exist or is available, print a message
-         System.out.println("Reservation for room " + roomNum + " does not exist.");
-      }
+      } return false;
    }
    public String toString(){
       String str="";
