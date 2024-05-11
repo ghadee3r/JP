@@ -12,7 +12,7 @@ public class Test {
     public static void main(String[] args) {
        Scanner scanner = new Scanner(System.in);
        
-        frame mainframe= new frame();
+        MainFrame mainframe= new MainFrame();
         mainframe.setVisible(true);
    
       Hotel hotel=new Hotel("Sofitel",100);
