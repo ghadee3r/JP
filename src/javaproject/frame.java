@@ -37,7 +37,7 @@ public class frame extends javax.swing.JFrame {
         setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Welcome to our project!");
+        jLabel1.setText(" Hotel Management System");
 
         jButton1.setText("add new hotel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
