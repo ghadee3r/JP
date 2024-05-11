@@ -4,6 +4,7 @@
  */
 package JavaProject;
 
+import static JavaProject.frame.ObjHotel;
 import javax.swing.JOptionPane;
 
 /**
@@ -162,6 +163,29 @@ public class FrameRes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Enter Customer Information");
             return ;
         }
+          
+                  String id, name, phoneNum;
+        id = jTextField1.getText();
+        name = jTextField2.getText();
+        phoneNum = jTextField3.getText();
+        int pNum=0;
+        int iD=0;
+        try{
+         iD = Integer.parseInt(id);
+        }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this, "invalid ID");
+        jTextField1.setText("0");
+        return;
+        }
+        try{
+         pNum = Integer.parseInt(phoneNum);
+        }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this, "invalid phone number");
+        jTextField3.setText("0");
+        return;
+        }
+       
+        Customer objCus= new Customer(name, pNum,id); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
