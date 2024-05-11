@@ -271,7 +271,7 @@ static Customer ObjCust = null ;
              
             JOptionPane.showMessageDialog(this, "Reservation has been made");
          else
-             JOptionPane.showMessageDialog(this, "could not make a reservation");
+             JOptionPane.showMessageDialog(this, "could not make a reservation, room has not been made yet");
                
                     
     }//GEN-LAST:event_jButton1ActionPerformed
