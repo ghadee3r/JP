@@ -4,6 +4,8 @@
  */
 package JavaProject;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ghade
@@ -156,11 +158,17 @@ public class FrameRes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+          if (jRadioButton1.isSelected()==false ){
+            JOptionPane.showMessageDialog(this, "Enter Customer Information");
+            return ;
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
-         if (jRadioButton1.isSelected()==true)
+        
+    
+        if (jRadioButton1.isSelected()==true)
         {
            
              jTextField1.setEnabled(true);
