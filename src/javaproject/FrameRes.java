@@ -277,8 +277,11 @@ static Customer ObjCust = null ;
        ObjCust= new Customer(name, pNum,id); 
       
        
-         frame.ObjHotel.makeReservation(ObjCust, noNights, pNum);
-            
+         if (frame.ObjHotel.makeReservation(ObjCust, noNights, RoomNum))
+             
+            JOptionPane.showMessageDialog(this, "Reservation has been made");
+         else
+             JOptionPane.showMessageDialog(this, "could not make a reservation");
                
                     
     }//GEN-LAST:event_jButton1ActionPerformed
