@@ -73,7 +73,7 @@ public class Hotel implements Serializable{
       
          if (roomList[i] != null && roomList[i].getReserved())
         
-        stri=roomList[i]+"\n---------------------------";
+        stri+=roomList[i]+"\n---------------------------\n";
          
       
       } 
