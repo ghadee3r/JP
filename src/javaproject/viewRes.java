@@ -152,7 +152,7 @@ public class viewRes extends javax.swing.JFrame {
         jTextField2.setText("0");
         return;
         }
-       
+      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
