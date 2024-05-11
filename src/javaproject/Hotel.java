@@ -65,19 +65,20 @@ public class Hotel implements Serializable{
    }
 
 
-   public void getReservations() {
+   public String getReservations() {
    
-   
+   String stri="";
+          
       for (int i = 0; i < numOR; i++) {
       
-         if (roomList[i] != null && roomList[i].getReserved()) 
-         
-            System.out.println(roomList[i]+"\n---------------------------");
+         if (roomList[i] != null && roomList[i].getReserved())
         
-          
+        stri=roomList[i]+"\n---------------------------";
+         
       
-      
-      }}
+      } 
+      return stri;
+}
 
 
    public boolean addRoom ( Room R ){
