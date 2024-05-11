@@ -105,14 +105,18 @@ public class Hotel implements Serializable{
       return false;
    }
 
-   public void makeReservation (Customer C, int noNights, int roomNum){
+   public boolean makeReservation (Customer C, int noNights, int roomNum){
       if (searchRoom(roomNum)!=null && isAvailable(roomNum) ){
          for (int i =0; i < numOR; i++)
             if(roomList[i].getRoomNum()==roomNum){
                roomList[i].setCustomer(C);
                roomList[i].setNoNights(noNights);
                roomList[i].setReserved(true);
-            }}
+               return true;
+            }
+      
+      }
+      return false;
    }
 
 
