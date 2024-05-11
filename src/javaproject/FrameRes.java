@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author ghade
  */
 public class FrameRes extends javax.swing.JFrame {
-
+static Customer ObjCust = null ;
     /**
      * Creates new form FrameRes
      */
@@ -37,6 +37,8 @@ public class FrameRes extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +87,22 @@ public class FrameRes extends javax.swing.JFrame {
 
         jTextField4.setText("Enter Room Number");
 
+        jTextField5.setText("Enter Number of Nights");
+        jTextField5.setEnabled(false);
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        jTextField6.setText("Enter Room Number");
+        jTextField6.setEnabled(false);
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,14 +115,19 @@ public class FrameRes extends javax.swing.JFrame {
                 .addGap(146, 146, 146)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton1)
+                                .addComponent(jRadioButton1)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                .addComponent(jTextField1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,11 +149,15 @@ public class FrameRes extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(12, 12, 12)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -155,12 +182,17 @@ public class FrameRes extends javax.swing.JFrame {
             return ;
         }
           
-                  String id, name, phoneNum;
+                  String id, name, phoneNum ,noNight, roomNo;
         id = jTextField1.getText();
         name = jTextField2.getText();
         phoneNum = jTextField3.getText();
+        noNight = jTextField5.getText();
+        roomNo = jTextField6.getText();
+        int noNights=0;
         int pNum=0;
         int iD=0;
+        int RoomNum=0;
+        
         try{
             if (id.length() !=10)
                 throw new InvalidMaxNumException();
@@ -196,7 +228,33 @@ public class FrameRes extends javax.swing.JFrame {
             return;
 }
         
-        Customer objCus= new Customer(name, pNum,id); 
+          try{
+
+         noNights = Integer.parseInt(noNight);
+        }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this, "invalid number of nights value");
+        jTextField5.setText("0");
+        return;
+        }
+            try{
+
+         RoomNum = Integer.parseInt(roomNo);
+        }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this, "invalid Room Number");
+        jTextField6.setText("0");
+        return;
+        }
+       
+
+        
+        
+       ObjCust= new Customer(name, pNum,id); 
+      
+       
+         frame.ObjHotel.makeReservation(ObjCust, noNights, pNum);
+            
+               
+                    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -209,6 +267,9 @@ public class FrameRes extends javax.swing.JFrame {
              jTextField1.setEnabled(true);
               jTextField2.setEnabled(true);
                jTextField3.setEnabled(true);
+                
+               jTextField5.setEnabled(true);
+               jTextField6.setEnabled(true);
             
      }
          
@@ -218,10 +279,20 @@ public class FrameRes extends javax.swing.JFrame {
              jTextField1.setEnabled(false);
               jTextField2.setEnabled(false);
                jTextField3.setEnabled(false);
+                jTextField5.setEnabled(false);
+                jTextField6.setEnabled(false);
             
      }
                                           
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,5 +338,7 @@ public class FrameRes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
